@@ -44,8 +44,6 @@ wget "https://github.com/t3rn/executor-release/releases/download/$TAG/executor-l
 tar -xzf executor-linux-*.tar.gz
 cd executor/executor/bin
 
-echo "Binary downloaded and extracted successfully."
-echo
 
 # Konfigurasi environment file
 sudo bash -c "cat > $ENV_FILE" <<EOL
