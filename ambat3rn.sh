@@ -45,7 +45,7 @@ cd executor/executor/bin
 
 # Konfigurasi environment file
 sudo bash -c "cat > $ENV_FILE" <<EOL
-RPC_ENDPOINTS="{\"l2rn\": [\"https://b2n.rpc.caldera.xyz/http\"], \"arbt\": [\"https://arbitrum-sepolia.drpc.org\", \"https://arb-sepolia.g.alchemy.com/v2/'$APIKEY_ALCHEMY'\"], \"bast\": [\"https://base-sepolia-rpc.publicnode.com\", \"https://base-sepolia.g.alchemy.com/v2/'$APIKEY_ALCHEMY'\"], \"opst\": [\"https://sepolia.optimism.io\", \"https://opt-sepolia.g.alchemy.com/v2/'$APIKEY_ALCHEMY'\"], \"unit\": [\"https://unichain-sepolia.g.alchemy.com/v2/'$APIKEY_ALCHEMY'\", \"https://sepolia.unichain.org\"]}"
+RPC_ENDPOINTS="{\"l2rn\": [\"https://b2n.rpc.caldera.xyz/http\"], \"arbt\": [\"https://arbitrum-sepolia.drpc.org\", \"https://arb-sepolia.g.alchemy.com/v2/$APIKEY_ALCHEMY\"], \"bast\": [\"https://base-sepolia-rpc.publicnode.com\", \"https://base-sepolia.g.alchemy.com/v2/$APIKEY_ALCHEMY\"], \"opst\": [\"https://sepolia.optimism.io\", \"https://opt-sepolia.g.alchemy.com/v2/$APIKEY_ALCHEMY\"], \"unit\": [\"https://unichain-sepolia.g.alchemy.com/v2/$APIKEY_ALCHEMY\", \"https://sepolia.unichain.org\"]}"
 EOL
 
 # Berikan hak akses ke user
