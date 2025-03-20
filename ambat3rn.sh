@@ -31,17 +31,28 @@ echo
 INSTALL_DIR="/home/$EXECUTOR_USER/t3rn"
 SERVICE_FILE="/etc/systemd/system/t3rn-executor.service"
 ENV_FILE="/etc/t3rn-executor.env"
+EXECUTOR_URL="https://github.com/t3rn/executor-release/releases/download/v0.53.1/executor-linux-v0.53.1.tar.gz"
+EXECUTOR_FILE="executor-linux-v0.53.1.tar.gz"
 
 # Pastikan direktori ada
 mkdir -p "$INSTALL_DIR" && cd "$INSTALL_DIR"
 
 # Unduh versi terbaru dari executor
-TAG=$(curl -s https://api.github.com/repos/t3rn/executor-release/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
-wget "https://github.com/t3rn/executor-release/releases/download/$TAG/executor-linux-$TAG.tar.gz"
+echo "Downloading the Executor binary from $EXECUTOR_URL..."
+curl -L -o $EXECUTOR_FILE $EXECUTOR_URL
+
+if [ $? -ne 0 ]; then
+    echo "Failed to download the Executor binary. Please check your internet connection and try again."
+    exit 1
+fi
 
 # Ekstrak file
-tar -xzf executor-linux-*.tar.gz
+tar -xzvf $EXECUTOR_FILE
+rm -rf $EXECUTOR_FILE
 cd executor/executor/bin
+
+echo "Binary downloaded and extracted successfully."
+echo
 
 # Konfigurasi environment file
 sudo bash -c "cat > $ENV_FILE" <<EOL
