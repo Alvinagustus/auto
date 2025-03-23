@@ -28,6 +28,19 @@ echo -n "Gas Price: "
 read GAS_PRICE
 echo
 
+# Menghentikan dan menghapus service lama jika ada
+if systemctl list-units --full -all | grep -q "t3rn-executor.service"; then
+    sudo systemctl stop t3rn-executor.service
+    sudo systemctl disable t3rn-executor.service
+    sudo systemctl daemon-reload
+fi
+
+# Menghapus file lama
+sudo rm -rf /home/$EXECUTOR_USER/t3rn
+sudo rm -rf /etc/systemd/system/t3rn-executor.service
+sudo rm -rf /etc/t3rn-executor.env
+
+
 INSTALL_DIR="/home/$EXECUTOR_USER/t3rn"
 SERVICE_FILE="/etc/systemd/system/t3rn-executor.service"
 ENV_FILE="/etc/t3rn-executor.env"
